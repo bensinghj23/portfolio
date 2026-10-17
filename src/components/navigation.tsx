@@ -6,7 +6,7 @@ import { useTheme } from "@/components/theme-provider";
 import { personalInfo } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { HiMenu, HiX } from "react-icons/hi";
-import { FiSun, FiMoon } from "react-icons/fi";
+import { FiSun, FiMoon, FiGithub, FiLinkedin, FiInstagram, FiTwitter } from "react-icons/fi";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -21,6 +21,14 @@ const navLinks = [
   { href: "#services", label: "Services" },
   { href: "#blog", label: "Blog" },
   { href: "#contact", label: "Contact" },
+];
+
+const socialLinks = [
+  { icon: FiLinkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
+  { icon: FiGithub, href: personalInfo.social.github, label: "GitHub" },
+  { icon: FiInstagram, href: personalInfo.social.instagram, label: "Personal Instagram" },
+  { icon: FiInstagram, href: personalInfo.social.instagramEditing, label: "Editing Instagram" },
+  { icon: FiTwitter, href: personalInfo.social.twitter, label: "X" },
 ];
 
 export function Navigation() {
@@ -80,6 +88,24 @@ export function Navigation() {
               >
                 Resume
               </a>
+              <div className="hidden xl:flex items-center gap-2 border-l border-border pl-3">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={social.label}
+                      aria-label={social.label}
+                      className="p-2 rounded-full border border-border/60 hover:border-foreground hover:bg-foreground hover:text-background transition-all duration-300"
+                    >
+                      <Icon size={14} />
+                    </a>
+                  );
+                })}
+              </div>
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full hover:bg-secondary transition-colors"
@@ -146,6 +172,29 @@ export function Navigation() {
               >
                 Resume
               </motion.a>
+
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      title={social.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: (navLinks.length + 1) * 0.05 }}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/60 text-foreground hover:bg-foreground hover:text-background transition-all duration-300"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <Icon size={16} />
+                    </motion.a>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         )}

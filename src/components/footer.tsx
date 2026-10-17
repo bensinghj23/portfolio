@@ -20,7 +20,8 @@ export function Footer() {
   const socialLinks = [
     { icon: FiGithub, href: personalInfo.social.github, label: "GitHub" },
     { icon: FiLinkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
-    { icon: FiInstagram, href: personalInfo.social.instagram, label: "Instagram" },
+    { icon: FiInstagram, href: personalInfo.social.instagram, label: "Personal Instagram" },
+    { icon: FiInstagram, href: personalInfo.social.instagramEditing, label: "Editing Instagram" },
     { icon: FiTwitter, href: personalInfo.social.twitter, label: "X" },
     { icon: FiMail, href: personalInfo.social.email, label: "Email" },
   ];

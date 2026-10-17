@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     title: "Bensingh | AI Engineer & Full Stack Developer",
     description:
       "Building AI-powered software, scalable web applications, and digital experiences that solve real-world problems.",
-    creator: "@bensingh",
+    creator: "@rento_editz",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -92,10 +92,11 @@ const jsonLd = {
   description:
     "Building AI-powered software, scalable web applications, and digital experiences that solve real-world problems.",
   sameAs: [
-    "https://github.com/bensingh",
-    "https://linkedin.com/in/bensingh",
-    "https://x.com/bensingh",
-    "https://instagram.com/bensingh",
+    "https://github.com/bensinghj23",
+    "https://www.linkedin.com/in/bensinghj/",
+    "https://x.com/rento_editz",
+    "https://www.instagram.com/lord._.rento/",
+    "https://www.instagram.com/itx._.rento/",
   ],
   knowsAbout: [
     "Artificial Intelligence",

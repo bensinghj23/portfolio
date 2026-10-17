@@ -7,11 +7,10 @@ import {
   useTransform,
   useMotionValue,
   useSpring,
-  useAnimationControls,
 } from "framer-motion";
 import Image from "next/image";
 import { personalInfo } from "@/lib/data";
-import { FiGithub, FiLinkedin, FiInstagram, FiTwitter, FiMail, FiArrowDown, FiDownload } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiInstagram, FiTwitter, FiArrowDown, FiDownload } from "react-icons/fi";
 import { HiOutlineEye } from "react-icons/hi";
 
 export function Hero() {
@@ -60,9 +59,11 @@ export function Hero() {
     }
 
     if (isDeleting && displayText === "") {
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % personalInfo.roles.length);
-      return;
+      const timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % personalInfo.roles.length);
+      }, 0);
+      return () => clearTimeout(timeout);
     }
 
     const timeout = setTimeout(() => {
@@ -79,11 +80,11 @@ export function Hero() {
   }, [displayText, isDeleting, roleIndex]);
 
   const socialLinks = [
-    { icon: FiGithub, href: personalInfo.social.github, label: "GitHub" },
     { icon: FiLinkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
-    { icon: FiInstagram, href: personalInfo.social.instagram, label: "Instagram" },
+    { icon: FiInstagram, href: personalInfo.social.instagram, label: "Personal Instagram" },
+    { icon: FiInstagram, href: personalInfo.social.instagramEditing, label: "Editing Instagram" },
+    { icon: FiGithub, href: personalInfo.social.github, label: "GitHub" },
     { icon: FiTwitter, href: personalInfo.social.twitter, label: "X" },
-    { icon: FiMail, href: personalInfo.social.email, label: "Email" },
   ];
 
   return (
@@ -171,7 +172,7 @@ export function Hero() {
                 transition={{ delay: 0.3 }}
                 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight"
               >
-                <span className="text-muted-foreground">I'm a </span>
+                <span className="text-muted-foreground">I&apos;m a </span>
                 <span className="text-gradient">{displayText}</span>
                 <motion.span
                   animate={{ opacity: [1, 0] }}
@@ -220,6 +221,32 @@ export function Hero() {
                 </span>
                 <div className="absolute inset-0 bg-foreground transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="flex flex-wrap gap-2"
+            >
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={social.label}
+                    aria-label={social.label}
+                    whileHover={{ y: -2, scale: 1.03 }}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-2 text-xs font-medium text-muted-foreground hover:border-foreground hover:text-foreground transition-all duration-300"
+                  >
+                    <Icon size={14} />
+                    {social.label}
+                  </motion.a>
+                );
+              })}
             </motion.div>
           </motion.div>
 

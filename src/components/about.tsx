@@ -2,8 +2,8 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { aboutStats } from "@/lib/data";
-import { FiUser, FiBook, FiBriefcase, FiTarget } from "react-icons/fi";
+import { aboutStats, personalInfo } from "@/lib/data";
+import { FiUser, FiBook, FiBriefcase, FiTarget, FiGithub, FiLinkedin, FiInstagram, FiTwitter } from "react-icons/fi";
 
 function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -67,6 +67,14 @@ const aboutCards = [
     content:
       "Aiming to leverage AI, Data Science, and Full Stack Development to build impactful software solutions. Open to exciting internship opportunities, collaborations, and real-world problem solving.",
   },
+];
+
+const aboutSocialLinks = [
+  { icon: FiLinkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
+  { icon: FiGithub, href: personalInfo.social.github, label: "GitHub" },
+  { icon: FiInstagram, href: personalInfo.social.instagram, label: "Personal Instagram" },
+  { icon: FiInstagram, href: personalInfo.social.instagramEditing, label: "Editing Instagram" },
+  { icon: FiTwitter, href: personalInfo.social.twitter, label: "X" },
 ];
 
 export function About() {
@@ -146,6 +154,32 @@ export function About() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+        >
+          {aboutSocialLinks.map((social) => {
+            const Icon = social.icon;
+            return (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                title={social.label}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-background/50 px-3 py-2 text-xs font-medium text-muted-foreground hover:border-foreground hover:text-foreground transition-all duration-300"
+              >
+                <Icon size={14} />
+                {social.label}
+              </a>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

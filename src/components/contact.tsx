@@ -17,7 +17,8 @@ export function Contact() {
   const socialLinks = [
     { icon: FiGithub, href: personalInfo.social.github, label: "GitHub" },
     { icon: FiLinkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
-    { icon: FiInstagram, href: personalInfo.social.instagram, label: "Instagram" },
+    { icon: FiInstagram, href: personalInfo.social.instagram, label: "Personal Instagram" },
+    { icon: FiInstagram, href: personalInfo.social.instagramEditing, label: "Editing Instagram" },
     { icon: FiTwitter, href: personalInfo.social.twitter, label: "X" },
     { icon: FiMail, href: personalInfo.social.email, label: "Email" },
   ];
@@ -132,17 +133,19 @@ export function Contact() {
 
             <div className="p-6 rounded-2xl glass">
               <h3 className="text-sm font-medium mb-4">Social Links</h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-xl glass hover:bg-foreground hover:text-background transition-all duration-300"
+                    target={social.label !== "Email" ? "_blank" : undefined}
+                    rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
+                    className="flex items-center gap-2 rounded-xl border border-border bg-background/30 px-3 py-2.5 text-sm text-muted-foreground hover:border-foreground hover:text-foreground transition-all duration-300"
                     aria-label={social.label}
+                    title={social.label}
                   >
-                    <social.icon size={18} />
+                    <social.icon size={16} />
+                    <span>{social.label}</span>
                   </a>
                 ))}
               </div>

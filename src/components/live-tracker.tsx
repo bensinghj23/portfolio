@@ -18,7 +18,7 @@ export function LiveTracker() {
             Live Tracker
           </span>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mt-4 tracking-tight">
-            What I'm Building Now
+            What I&apos;m Building Now
           </h2>
         </motion.div>
 
